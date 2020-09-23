@@ -1,6 +1,7 @@
 var echarts = require("echarts");
 var fs = require('fs');
 var path = require('path');
+var WebFont = require('webfontloader');
 var { JSDOM } = require('jsdom');
 
 
@@ -49,6 +50,11 @@ module.exports = function (config) {
     global.window = window;
     global.navigator = window.navigator;
     global.document = window.document;
+    WebFont.load({
+      google: {
+        families: ['Open Sans', 'Open Serif']
+      }
+    });
     const div = window.document.createElement('div');
     div.style.cssText = `width: ${config.width}px; height: ${config.height}px;`;
     chart = echarts.init(div, null, {renderer: 'svg'});
