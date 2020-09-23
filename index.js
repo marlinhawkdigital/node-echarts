@@ -52,9 +52,10 @@ module.exports = function (config) {
     const div = window.document.createElement('div');
     chart = echarts.init(div, null, {renderer: 'svg'});
     chart.setOption(config.option);
+    const output = div.querySelector('svg').outerHTML;
     if (config.path) {
         try {
-            fs.writeFileSync(config.path, chart.getDom().toBuffer());
+            fs.writeFileSync(config.path, output);
             if(config.enableAutoDispose){
               chart.dispose();
             }
@@ -64,12 +65,11 @@ module.exports = function (config) {
         }
         
     } else {
-        var buffer = chart.getDom().toBuffer();
-        try{
-          if(config.enableAutoDispose){
-            chart.dispose();
-          }
-        }catch(e){}
-        return buffer;
+      try{
+        if(config.enableAutoDispose){
+          chart.dispose();
+        }
+      }catch(e){}
+      return output;
     }
 }
