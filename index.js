@@ -1,5 +1,5 @@
 var echarts = require("echarts");
-var Canvas = require("canvas-prebuilt");
+var Canvas = require("canvas");
 var fs = require('fs');
 var path = require('path');
 
