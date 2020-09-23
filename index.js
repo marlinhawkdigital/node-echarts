@@ -50,6 +50,7 @@ module.exports = function (config) {
     global.navigator = window.navigator;
     global.document = window.document;
     const div = window.document.createElement('div');
+    div.style.cssText = `width: ${config.width}px; height: ${config.height}px;`;
     chart = echarts.init(div, null, {renderer: 'svg'});
     chart.setOption(config.option);
     const output = div.querySelector('svg').outerHTML;
