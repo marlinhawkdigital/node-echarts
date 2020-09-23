@@ -45,9 +45,12 @@ module.exports = function (config) {
     config = Object.assign({}, defaultConfig, config)
 
     config.option.animation = false;
-    const dom = new JSDOM("<div></div>");
-    const div = dom.window.document.querySelector("div");
-    chart = echarts.init(div, {}, {renderer: 'svg'});
+    const { window } = new JSDOM();
+    global.window = window;
+    global.navigator = window.navigator;
+    global.document = window.document;
+    const div = window.document.createElement('div');
+    chart = echarts.init(div, null, {renderer: 'svg'});
     chart.setOption(config.option);
     if (config.path) {
         try {
