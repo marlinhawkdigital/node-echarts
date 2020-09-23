@@ -1,7 +1,7 @@
 var echarts = require("echarts");
-var Canvas = require("canvas-prebuilt");
 var fs = require('fs');
 var path = require('path');
+var { JSDOM } = require('jsdom');
 
 
 /**
@@ -16,19 +16,6 @@ var path = require('path');
  *
  */
 module.exports = function (config) {
-    if (config.canvas) {
-        Canvas = config.canvas;
-    }
-
-    var ctx = new Canvas(128, 128);
-    if (config.font) {
-        ctx.font = config.font;
-    }
-
-    echarts.setCanvasCreator(function () {
-        return ctx;
-    });
-
     var chart, option = {
         title: {
             text: 'test'
@@ -58,7 +45,9 @@ module.exports = function (config) {
     config = Object.assign({}, defaultConfig, config)
 
     config.option.animation = false;
-    chart = echarts.init(new Canvas(parseInt(config.width, 10), parseInt(config.height, 10)));
+    const dom = new JSDOM("<div></div>");
+    const div = dom.window.document.querySelector("div");
+    chart = echarts.init(div, {}, {renderer: 'svg'});
     chart.setOption(config.option);
     if (config.path) {
         try {
