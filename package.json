@@ -23,7 +23,7 @@
   "homepage": "https://github.com/suxiaoxin/node-echarts#readme",
   "dependencies": {
     "canvas": "^2.6.1",
-    "jsdom": "^16.4.0"
+    "svgdom": "^0.1.8"
   },
   "peerDependencies": {
     "echarts": "^4.0.3"

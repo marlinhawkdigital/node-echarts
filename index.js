@@ -1,8 +1,7 @@
 var echarts = require("echarts");
 var fs = require('fs');
 var path = require('path');
-var { JSDOM } = require('jsdom');
-
+const { createSVGWindow } = require('svgdom');
 
 /**
  * @param config = {
@@ -45,12 +44,14 @@ module.exports = function (config) {
     config = Object.assign({}, defaultConfig, config)
 
     config.option.animation = false;
-    const { window } = new JSDOM();
+    const window = createSVGWindow();
+    const document = window.document;
     global.window = window;
     global.navigator = window.navigator;
     global.document = window.document;
-    const div = window.document.createElement('div');
-    div.style.cssText = `width: ${config.width}px; height: ${config.height}px;`;
+    const div = document.documentElement;
+  //const div = window.document.createElement('div');
+  //div.style.cssText = `width: ${config.width}px; height: ${config.height}px;`;
     chart = echarts.init(div, null, {renderer: 'svg'});
     chart.setOption(config.option);
     const output = div.querySelector('svg').outerHTML;
