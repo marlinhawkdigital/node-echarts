@@ -6,8 +6,8 @@ var { JSDOM } = require('jsdom');
 
 /**
  * @param config = {
-        width: 500 // Image width, type is number.
-        height: 500 // Image height, type is number.
+        width: '500px'
+        height: '500px'
         option: {}, // Echarts configuration, type is Object.
         //If the path  is not set, return the Buffer of image.
         path:  '', // Path is filepath of the image which will be created.
@@ -36,8 +36,8 @@ module.exports = function (config) {
     };
 
     let defaultConfig = {
-      width: 500,
-      height: 500,
+      width: '500px',
+      height: '500px',
       option,
       enableAutoDispose: true
     }
@@ -50,7 +50,7 @@ module.exports = function (config) {
     global.navigator = window.navigator;
     global.document = window.document;
     const div = window.document.createElement('div');
-    div.style.cssText = `width: ${config.width}px; height: ${config.height}px;`;
+    div.style.cssText = `width: ${config.width}; height: ${config.height};`;
     chart = echarts.init(div, null, {renderer: 'svg'});
     chart.setOption(config.option);
     const output = div.querySelector('svg').outerHTML;
