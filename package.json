@@ -23,7 +23,7 @@
   "homepage": "https://github.com/suxiaoxin/node-echarts#readme",
   "dependencies": {
     "canvas": "^2.6.1",
-    "jsdom": "git+https://github.com/marlinhawkdigital/jsdom.git#font-fix"
+    "jsdom": "git+https://github.com/marlinhawkdigital/jsdom.git#font-fix-build"
   },
   "peerDependencies": {
     "echarts": "^4.0.3"
