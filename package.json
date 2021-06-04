@@ -26,7 +26,7 @@
     "jsdom": "git+https://github.com/marlinhawkdigital/jsdom.git#font-fix-build"
   },
   "peerDependencies": {
-    "echarts": "^4.0.3"
+    "echarts": ">=4.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.32",
